@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "build": "npm install ",
-    "start": "node server.js & npm i -g peerjs & peerjs --port 3001"
+    "start": "node server.js & npx peerjs --port 3001"
   },
   "keywords": [],
   "author": "",
