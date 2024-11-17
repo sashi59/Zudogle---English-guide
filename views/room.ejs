@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Call Room</title>
+  <!-- Styles for the video call UI -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      color: #333;
+    }
+
+    header {
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    header h2 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    #controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      background-color: #ff4747;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e63e3e;
+    }
+
+    button.secondary {
+      background-color: #17a2b8;
+    }
+
+    button.secondary:hover {
+      background-color: #138496;
+    }
+
+    #video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 20px;
+      overflow-y: auto;
+      height: calc(100vh - 100px);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      background-color: black;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 600px) {
+      header h2 {
+        font-size: 1.2rem;
+      }
+
+      button {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Room ID and Controls -->
+  <header>
+    <h2>Room ID: <span id="room-id"><%= roomId %></span></h2>
+    <div id="controls">
+      <button id="mute-btn" class="secondary">Mute</button>
+      <button id="leave-btn">Leave Room</button>
+    </div>
+  </header>
+
+  <!-- Grid for video streams -->
+  <div id="video-grid"></div>
+
+  <!-- Pass the room ID to the script -->
+  <script>
+    const ROOM_ID = "<%= roomId %>";
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.3.2/dist/peerjs.min.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
