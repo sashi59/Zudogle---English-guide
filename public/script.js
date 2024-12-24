@@ -1,9 +1,11 @@
-const socket = io('/');
+
+const socket = io("/");
+
 const videoGrid = document.getElementById('video-grid');
 const muteBtn = document.getElementById('mute-btn');
 const leaveBtn = document.getElementById('leave-btn');
 const myPeer = new Peer(undefined, {
-  host: '/',
+  host: "/",
   port: '3001'
 });
 const myVideo = document.createElement('video');
