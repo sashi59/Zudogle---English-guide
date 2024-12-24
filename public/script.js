@@ -9,7 +9,7 @@ const myPeer = new Peer(undefined, {
   host: "zudogle-english-guide-1.onrender.com",
   port: 443, // Use port 443 for HTTPS
   path: "/peerjs", // Path specified during PeerJS server setup
-  secure: true // Indicates HTTPS
+  secure: false // Indicates HTTPS
 });
 const myVideo = document.createElement('video');
 myVideo.muted = true;
