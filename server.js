@@ -1,4 +1,5 @@
 const express = require('express');
+const { ExpressPeerServer } = require('peer');
 const app = express();
 const dotenv = require('dotenv');
 const server = require('http').Server(app);
@@ -19,13 +20,17 @@ app.get('/:room', (req, res) => {
   res.render('room', { roomId: req.params.room });
 });
 
+const peerServer = ExpressPeerServer(server, {
+  path: '/peerjs',
+  debug: true
+});
+app.use('/peerjs', peerServer);
 
 io.on('connection', (socket) => {
   socket.on('join-room', (roomId, userId) => {
     socket.join(roomId);
     socket.to(roomId).broadcast.emit('user-connected', userId);
 
-    // Handle user disconnection
     socket.on('disconnect', () => {
       socket.to(roomId).broadcast.emit('user-disconnected', userId);
     });

@@ -1,12 +1,15 @@
-
-const socket = io("/");
+const socket = io("https://zudogle-english-guide-1.onrender.com", {
+  path: "/socket.io" // Explicitly specify the path
+});
 
 const videoGrid = document.getElementById('video-grid');
 const muteBtn = document.getElementById('mute-btn');
 const leaveBtn = document.getElementById('leave-btn');
 const myPeer = new Peer(undefined, {
-  host: "/",
-  port: '3001'
+  host: "zudogle-english-guide-1.onrender.com",
+  port: 443, // Use port 443 for HTTPS
+  path: "/peerjs", // Path specified during PeerJS server setup
+  secure: true // Indicates HTTPS
 });
 const myVideo = document.createElement('video');
 myVideo.muted = true;
